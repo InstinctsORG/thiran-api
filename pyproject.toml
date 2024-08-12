@@ -10,6 +10,7 @@ python = "^3.11"
 fastapi = "^0.112.0"
 uvicorn = "^0.30.5"
 pytest = "^8.3.2"
+flake8 = "^7.1.1"
 
 
 [build-system]
