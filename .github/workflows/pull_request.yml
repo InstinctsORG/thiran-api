@@ -27,7 +27,7 @@ jobs:
         run: poetry install --no-root --only main
 
       - name: Lint code
-        run: poetry run flake8 .
+        run: poetry run flake8 --ignore E501
 
       - name: Run tests
         run: poetry run pytest

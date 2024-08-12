@@ -13,6 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # TODO : differentiate public & protected Api's
 # app.include_router(user_profile.router, prefix="/user", tags=['User Data'])
 # app.include_router(login.router, prefix="/login", tags=['Login Authentication'])
