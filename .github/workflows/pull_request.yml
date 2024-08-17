@@ -43,6 +43,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.PA_SSH_KEY }}
+      
+      - name: Add PythonAnywhere to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ssh.pythonanywhere.com >> ~/.ssh/known_hosts
 
       - name: Copy files to PythonAnywhere
         run: |
