@@ -72,17 +72,21 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/thiran-api:${{ github.sha }} .
+          # Convert organization and repo names to lowercase
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build -t ghcr.io/${REPO_NAME}/thiran-api:${{ github.sha }} .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository }}/thiran-api:${{ github.sha }}
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/${REPO_NAME}/thiran-api:${{ github.sha }}
 
       - name: Tag Docker image with latest
         if: github.ref == 'refs/heads/main'
         run: |
-          docker tag ghcr.io/${{ github.repository }}/thiran-api:${{ github.sha }} ghcr.io/${{ github.repository }}/thiran-api:latest
-          docker push ghcr.io/${{ github.repository }}/thiran-api:latest
+          REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker tag ghcr.io/${REPO_NAME}/thiran-api:${{ github.sha }} ghcr.io/${REPO_NAME}/thiran-api:latest
+          docker push ghcr.io/${REPO_NAME}/thiran-api:latest
 
   # deploy:
   #   runs-on: ubuntu-latest
